@@ -4,6 +4,12 @@
  */
 package upin;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 4c35
@@ -46,6 +52,11 @@ public class LoginUI extends javax.swing.JFrame {
 
         loginBtn.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         loginBtn.setText("LOGIN");
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginBtnActionPerformed(evt);
+            }
+        });
 
         regnowBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         regnowBtn.setText("Register Now");
@@ -56,10 +67,9 @@ public class LoginUI extends javax.swing.JFrame {
         });
 
         usernameLoginTxt.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
-        usernameLoginTxt.setText("isiUsername");
+        usernameLoginTxt.setToolTipText("");
 
         passwordLoginTxt.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
-        passwordLoginTxt.setText("isiPassword");
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -118,6 +128,34 @@ public class LoginUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_regnowBtnActionPerformed
 
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+        // TODO add your handling code here:
+        new Thread(() -> {
+        String username = usernameLoginTxt.getText();
+        String password = passwordLoginTxt.getText();
+                
+            try (Socket socket = new Socket("localhost", 6000);
+                 DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+                 DataInputStream in = new DataInputStream(socket.getInputStream())) {
+
+                out.writeUTF(username + "#" + password);
+                
+                String response = in.readUTF();
+                
+                if ("success".equals(response)) {
+                    JOptionPane.showMessageDialog(null, "Login Berhasil!");
+                    dispose();
+                    new ListTicketUI().setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Login Gagal!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (IOException ex) {
+                System.out.println("Terjadi error (formLogin): " + ex);   
+            }
+            }).start();;
+    }//GEN-LAST:event_loginBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -147,6 +185,7 @@ public class LoginUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new LoginUI().setVisible(true);
             }
