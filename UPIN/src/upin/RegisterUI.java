@@ -4,6 +4,9 @@
  */
 package upin;
 
+import javax.swing.JOptionPane;
+import upin.LoginUI;
+
 /**
  *
  * @author 4c35
@@ -36,7 +39,11 @@ public class RegisterUI extends javax.swing.JFrame {
         emailTxt = new javax.swing.JTextField();
         usernameRegTxt = new javax.swing.JTextField();
         passwordRegTxt = new javax.swing.JTextField();
-        confirmRegTxt = new javax.swing.JTextField();
+        memberSinceTxt = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        fullnameTxt = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        DobTxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
@@ -48,7 +55,7 @@ public class RegisterUI extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Confirm Password");
+        jLabel2.setText("Member Since");
 
         jLabel3.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -64,6 +71,11 @@ public class RegisterUI extends javax.swing.JFrame {
 
         submitBtn.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         submitBtn.setText("SUBMIT");
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBtnActionPerformed(evt);
+            }
+        });
 
         backBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         backBtn.setText("Back to Login");
@@ -77,8 +89,22 @@ public class RegisterUI extends javax.swing.JFrame {
         passwordRegTxt.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
         passwordRegTxt.setText("isiPassword");
 
-        confirmRegTxt.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
-        confirmRegTxt.setText("isiConfirm");
+        memberSinceTxt.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
+        memberSinceTxt.setText("isiMember");
+
+        jLabel6.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Full Name");
+
+        fullnameTxt.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
+        fullnameTxt.setText("isiFullname");
+
+        jLabel7.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Date of Birth");
+
+        DobTxt.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
+        DobTxt.setText("isiDob");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,59 +113,100 @@ public class RegisterUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5))
-                                .addComponent(confirmRegTxt)
-                                .addComponent(usernameRegTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                                .addComponent(emailTxt))
-                            .addComponent(passwordRegTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(91, 91, 91)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(backBtn))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(DobTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel3)
+                                .addComponent(usernameRegTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2)
+                                    .addComponent(memberSinceTxt))
+                                .addComponent(jLabel5)
+                                .addComponent(passwordRegTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel6)
+                                .addComponent(fullnameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                                .addComponent(emailTxt))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(submitBtn)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addGap(78, 78, 78)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(submitBtn))
+                            .addComponent(backBtn))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
+                .addGap(19, 19, 19)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fullnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(usernameRegTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addGap(2, 2, 2)
+                .addComponent(passwordRegTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(usernameRegTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addGap(2, 2, 2)
-                .addComponent(passwordRegTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DobTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(confirmRegTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(memberSinceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addComponent(submitBtn)
                 .addGap(18, 18, 18)
                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        // TODO add your handling code here:
+        new Thread(() -> {
+                    try (Socket socket = new Socket("localhost", 6000);
+                         DataInputStream in = new DataInputStream(socket.getInputStream());
+                         DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
+                        
+                        String data = "REGISTER," + fullnameTxt.getText() + "," + usernameRegTxt.getText() + "," + passwordRegTxt.getText() + "," + emailTxt.getText() + "," + DobTxt.getText() + "," + memberSinceTxt.getText();
+                        out.writeUTF(data);
+                        
+                        String response = in.readUTF();
+                        
+                            if ("exists".equals(response)) {
+                                JOptionPane.showMessageDialog(null, "User sudah terdaftar pada sistem", "Error", JOptionPane.ERROR_MESSAGE);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Registrasii berhasil");
+                                dispose();
+                                new LoginUI().setVisible(true);
+                            }
+                    } 
+                    catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }).start();
+            }
+
+    }//GEN-LAST:event_submitBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,26 +234,31 @@ public class RegisterUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(RegisterUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new RegisterUI().setVisible(true);
             }
         });
+      
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField DobTxt;
     private javax.swing.JButton backBtn;
-    private javax.swing.JTextField confirmRegTxt;
     private javax.swing.JTextField emailTxt;
+    private javax.swing.JTextField fullnameTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JTextField memberSinceTxt;
     private javax.swing.JTextField passwordRegTxt;
     private javax.swing.JButton submitBtn;
     private javax.swing.JTextField usernameRegTxt;
     // End of variables declaration//GEN-END:variables
-}
+
